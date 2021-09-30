@@ -1,0 +1,54 @@
+@import "./src/App";
+
+.userInfoWrapper {
+  margin-top: 86px;
+  background: $userInfoBgColor;
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+  width: 90%;
+
+
+  .btnWrapper {
+    height: 40px;
+
+    .btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      margin-bottom: 40px;
+    }
+  }
+
+  .userInfoProfileWrapper {
+    div {
+      display: flex;
+      margin: 10px 0 10px 20px;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  input {
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  .userInfoProfileAddressWrapper {
+    @include flexCenter();
+    justify-self: flex-start;
+    margin-left: 20px;
+
+    div {
+      display: flex;
+      margin: 10px 0 10px 20px;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+

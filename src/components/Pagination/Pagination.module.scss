@@ -1,0 +1,41 @@
+@import "src/App";
+
+.paginationWrapper {
+  display: flex;
+  justify-content: flex-start;
+
+  .control {
+    color: $btnColor;
+    background: $btnBgColor;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    border: 1px solid green;
+    height: 35px;
+    user-select: none;
+
+    &:active,
+    &:hover,
+    &:focus {
+      box-shadow: $boxShadow;
+    }
+  }
+
+  .active {
+    background: rebeccapurple;
+  }
+
+  .disabled {
+    cursor: default;
+    background: lighten($btnBgColor, 25%);
+    color: darkgrey;
+
+    &:active,
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+$trBgColor: darkseagreen;
+$btnBgColor: #3498DB;
+$btnHoverBgColor: darken($btnBgColor, 15%);
+$btnColor: white;
+$boxShadow: 0 4px 8px rgba(34, 60, 80, 0.2);
+$userInfoBgColor: #f1f1f1;
+
+@mixin flexCenter() {
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Times New Roman", sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  min-width: 890px;
+}
+
+input {
+  border: 1px solid green;
+  font-size: 14px;
+  outline: none;
+  padding: 5px;
+  width: 200px;
+  border-radius: 5px;
+
+  &:active,
+  &:hover,
+  &:focus {
+    box-shadow: $boxShadow;
+    border: 3px solid rebeccapurple;
+  }
+}
+
+.app {
+  @include flexCenter();
+  flex-direction: row;
+}
+
+.col-1, .col-2 {
+  @include flexCenter()
+}
+
+.col-1 {
+  width: 70%;
+}
+
+.col-2 {
+  align-items: center;
+  width: 30%;
+}
+
+@media screen and (max-width: 1050px) {
+  input {
+    width: 150px;
+  }
+}
+
+
+
+
+
+
