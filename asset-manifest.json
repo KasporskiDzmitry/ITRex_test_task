@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/KasporskiDzmitry/ITRex_test_task/static/css/main.2838df55.chunk.css",
+    "main.js": "/KasporskiDzmitry/ITRex_test_task/static/js/main.4eb8d9f6.chunk.js",
+    "main.js.map": "/KasporskiDzmitry/ITRex_test_task/static/js/main.4eb8d9f6.chunk.js.map",
+    "runtime-main.js": "/KasporskiDzmitry/ITRex_test_task/static/js/runtime-main.b8159ab1.js",
+    "runtime-main.js.map": "/KasporskiDzmitry/ITRex_test_task/static/js/runtime-main.b8159ab1.js.map",
+    "static/js/2.c1e5c1f0.chunk.js": "/KasporskiDzmitry/ITRex_test_task/static/js/2.c1e5c1f0.chunk.js",
+    "static/js/2.c1e5c1f0.chunk.js.map": "/KasporskiDzmitry/ITRex_test_task/static/js/2.c1e5c1f0.chunk.js.map",
+    "index.html": "/KasporskiDzmitry/ITRex_test_task/index.html",
+    "static/css/main.2838df55.chunk.css.map": "/KasporskiDzmitry/ITRex_test_task/static/css/main.2838df55.chunk.css.map",
+    "static/js/2.c1e5c1f0.chunk.js.LICENSE.txt": "/KasporskiDzmitry/ITRex_test_task/static/js/2.c1e5c1f0.chunk.js.LICENSE.txt",
+    "static/media/UsersTable.module.scss": "/KasporskiDzmitry/ITRex_test_task/static/media/preloader.b767aab4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8159ab1.js",
+    "static/js/2.c1e5c1f0.chunk.js",
+    "static/css/main.2838df55.chunk.css",
+    "static/js/main.4eb8d9f6.chunk.js"
+  ]
+}
