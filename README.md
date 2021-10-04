@@ -2,6 +2,8 @@
 
 Develop a small SPA where data is fetched from an API and displayed in a table.
 
+https://kasporskidzmitry.github.io/ITRex_test_task/
+
 ## Main functionality
 
 - The data in the table is loaded from the server when the page is first loaded
