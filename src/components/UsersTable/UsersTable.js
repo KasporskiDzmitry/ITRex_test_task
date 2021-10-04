@@ -23,38 +23,31 @@ const UsersTable = (props) => {
         props.setCurrentUser(user);
     };
 
-    const createTableHead = () => {
-        const names = {
-            id: 'id',
-            firstName: 'First name',
-            lastName: 'Last name',
-            email: 'Email',
-            phone: 'Phone',
-            state: 'State'
-        };
-        return Object.keys(refs).map((i) => <td key={i} ref={refs[i]} onClick={() => {
-            if (sortBy === i) {
-                setIsAscSort(!isAscSort);
-            }
-            setSortBy(i)
-        }}>{names[i]} {sortBy === i ? isAscSort ? <span>&#8593;</span> : <span>&#8595;</span> : ''}</td>)
-    };
-
-    const renderRows = () => {
+    const filterUsers = (filter) => {
+        setFilter(filter);
         const regExp = new RegExp(filter, 'i');
-        let users = props.usersToShow.filter(i => (
+        props.setUsersToShow(props.users.filter(i => (
             i.firstName.match(regExp) ||
             i.lastName.match(regExp) ||
             i.email.match(regExp) ||
             i.phone.match(regExp) ||
             i.adress.state.match(regExp)
-        ));
+        )));
+        props.setCurrentPage(0);
+    };
 
-        if (filterState !== 'All') {
-            users = users.filter(i => i.adress.state === filterState);
+    const filterUsersByState = (state) => {
+        setFilterState(state);
+        if (state !== 'All') {
+            props.setUsersToShow(props.users.filter(i => i.adress.state === state));
+        } else {
+            props.setUsersToShow(props.users);
         }
+    };
 
-        const rows = users.sort((a, b) => {
+    const sortUsers = (sortBy) => {
+        setSortBy(sortBy);
+        const users = props.users.sort((a, b) => {
             if (sortBy === 'state') {
                 a = a.adress;
                 b = b.adress;
@@ -66,17 +59,26 @@ const UsersTable = (props) => {
                 return -1;
             }
             return 0;
-        }).map((i, idx) => <tr key={i.id + idx} className={idx % 2 === 0 ? style.odd : undefined} onClick={() => chooseUser(i)}>
-                <td>{i.id}</td>
-                <td>{i.firstName}</td>
-                <td>{i.lastName}</td>
-                <td>{i.email}</td>
-                <td>{i.phone}</td>
-                <td>{i.adress.state}</td>
-            </tr>
-        );
+        });
 
-        return isAscSort ? rows : rows.reverse();
+        return !isAscSort ?
+            props.setUsersToShow(users) :
+            props.setUsersToShow(users.reverse());
+    };
+
+    const createTableHead = () => {
+        const names = {
+            id: 'id',
+            firstName: 'First name',
+            lastName: 'Last name',
+            email: 'Email',
+            phone: 'Phone',
+            state: 'State'
+        };
+        return Object.keys(refs).map((i) => <td key={i} ref={refs[i]} onClick={() => {
+            setIsAscSort(!isAscSort);
+            sortUsers(i)
+        }}>{names[i]} {sortBy === i ? isAscSort ? <span>&#8593;</span> : <span>&#8595;</span> : ''}</td>)
     };
 
     return <div className={style.usersTableWrapper}>
@@ -84,16 +86,17 @@ const UsersTable = (props) => {
             <div className={style.filter}>
                 <div>
                     <input type="text" placeholder='Search by name' value={filter}
-                           onChange={(e) => setFilter(e.target.value)}/>
+                           onChange={(e) => filterUsers(e.target.value)}/>
                 </div>
                 <div>
                     <ButtonDropdown btnName={filterState !== 'All' ? filterState : 'Filter by state'}
-                                    content={[...new Set(props.usersToShow.map(i => i.adress.state))]}
-                                    onClickHandler={setFilterState}/>
+                                    content={[...new Set(props.users.map(i => i.adress.state))]}
+                                    onClickHandler={filterUsersByState}/>
                 </div>
             </div>
-            <Pagination data={props.users} controlsNumber={3} itemsPerPage={ITEMS_PER_PAGE}
-                        onPageChange={props.setUsersToShow}/>
+            <Pagination data={filter === '' && filterState === 'All' ? props.users : props.usersToShow}
+                        currentPage={props.currentPage} controlsNumber={3} itemsPerPage={ITEMS_PER_PAGE}
+                        onPageChange={props.setCurrentPage}/>
         </div>
         <div className={style.usersTableTableWrapper}>
             <table className={props.users.length === 0 ? style.loading : undefined}>
@@ -103,7 +106,19 @@ const UsersTable = (props) => {
                 </tr>
                 </thead>
                 <tbody>
-                {renderRows()}
+                {
+                    props.usersToShow.slice(props.currentPage * ITEMS_PER_PAGE, props.currentPage * ITEMS_PER_PAGE + ITEMS_PER_PAGE)
+                        .map((i, idx) => <tr key={i.id + i.phone} className={idx % 2 === 0 ? style.odd : undefined}
+                                             onClick={() => chooseUser(i)}>
+                                <td>{i.id}</td>
+                                <td>{i.firstName}</td>
+                                <td>{i.lastName}</td>
+                                <td>{i.email}</td>
+                                <td>{i.phone}</td>
+                                <td>{i.adress.state}</td>
+                            </tr>
+                        )
+                }
                 </tbody>
             </table>
         </div>

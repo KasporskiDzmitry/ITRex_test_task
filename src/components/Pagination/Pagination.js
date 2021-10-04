@@ -6,11 +6,15 @@ const Pagination = (props) => {
     const [currPage, setCurrPage] = useState(0);
     const [controlsGroup, setControlsGroup] = useState(0);
 
+    useEffect(() => {
+        setCurrPage(props.currentPage)
+        if (props.currentPage === 0) {
+            setControlsGroup(0);
+        }
+    }, [props.currentPage])
 
     useEffect(() => {
-        const start = currPage * props.itemsPerPage;
-        const end = start + props.itemsPerPage;
-        props.onPageChange(props.data.slice(start, end))
+        props.onPageChange(currPage)
     }, [currPage])
 
     const renderControls = () => {

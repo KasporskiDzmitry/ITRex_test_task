@@ -2,7 +2,7 @@ import './App.scss';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {fetchUsers, setCurrentUser, setUsersToShow} from "./redux/app-reducer";
+import {fetchUsers, setCurrentPage, setCurrentUser, setUsersToShow} from "./redux/app-reducer";
 import UsersTable from "./components/UsersTable/UsersTable";
 import UserInfo from "./components/UserInfo/UserInfo";
 
@@ -14,8 +14,10 @@ class App extends Component {
     render() {
         return <div className="app">
             <div className='col-1'>
-                <UsersTable users={this.props.users} usersToShow={this.props.usersToShow} setUsersToShow={this.props.setUsersToShow}
-                            setCurrentUser={this.props.setCurrentUser}/>
+                <UsersTable users={this.props.users} usersToShow={this.props.usersToShow}
+                            setUsersToShow={this.props.setUsersToShow}
+                            setCurrentUser={this.props.setCurrentUser} setCurrentPage={this.props.setCurrentPage}
+                            currentPage={this.props.currentPage}/>
             </div>
             <div className='col-2'>
                 {this.props.currentUser &&
@@ -28,9 +30,10 @@ class App extends Component {
 const mapStateToProps = state => ({
     users: state.appReducer.users,
     usersToShow: state.appReducer.usersToShow,
-    currentUser: state.appReducer.currentUser
+    currentUser: state.appReducer.currentUser,
+    currentPage: state.appReducer.currentPage
 });
 
 export default compose(
-    connect(mapStateToProps, {fetchUsers, setUsersToShow, setCurrentUser})(App)
+    connect(mapStateToProps, {fetchUsers, setUsersToShow, setCurrentUser, setCurrentPage})(App)
 );
