@@ -2,7 +2,7 @@
 
 Develop a small SPA where data is fetched from an API and displayed in a table.
 
-https://kasporskidzmitry.github.io/ITRex_test_task/
+https://kasporskidzmitry.github.io/react_test_task/
 
 ## Main functionality
 
